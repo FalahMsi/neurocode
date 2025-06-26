@@ -1,0 +1,42 @@
+
+---
+
+## 📄 `.gitignore`
+
+```gitignore
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+.venv/
+env/
+ENV/
+
+# Logs and debug
+*.log
+logs/
+*.tmp
+
+# Databases
+*.db
+*.sqlite
+
+# Heavy JSON and data files
+*.json
+*.csv
+
+# Exclude large training/eval data (custom)
+SmartCodeLex/knowledge/example_bank*.json
+SmartCodeLex/languages/python/python100k_train.json
+SmartCodeLex/languages/python/python50k_eval.json
+
+# Jupyter/IPython stuff
+.ipynb_checkpoints
+
+# System files
+.DS_Store
+Thumbs.db
+# IDEs and editors
+.vscode/
