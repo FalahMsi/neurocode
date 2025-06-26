@@ -58,17 +58,5 @@ To generate your own test data or simulate training, refer to each module's inte
 # Assuming Python environment is ready
 python -m venv .venv
 .venv\Scripts\activate        # On Windows
-🔔 If you're an organization or researcher interested in continuing this project, feel free to fork or reach out via GitHub.
 pip install -r requirements.txt
 python main.py
-
----
-
-##  Looking for Adoption
-
-This is an open-source intellectual initiative.
-Due to personal limitations, I am unable to continue its development.
-If you're a developer, researcher, or organization interested in adopting or expanding this idea, you're welcome.
-Feel free to fork, contribute, or reach out.
-
- Contact: [FalahMsi](https://github.com/FalahMsi)
