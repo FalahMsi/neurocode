@@ -9,7 +9,7 @@ DEFAULT_DB_PATH = "storage/core_units.db"
 
 def create_database(db_path: Optional[str] = None) -> sqlite3.Connection:
     """
-    ينشئ قاعدة بيانات SQLite مع دعم الفهارس وجداول meta.
+    Creates an SQLite database with support for indexes and meta tables.
     """
     path = db_path or DEFAULT_DB_PATH
     os.makedirs(os.path.dirname(path), exist_ok=True)
@@ -19,11 +19,11 @@ def create_database(db_path: Optional[str] = None) -> sqlite3.Connection:
         conn.enable_load_extension(True)
         conn.execute("SELECT json('[]')")
     except sqlite3.OperationalError:
-        print("⚠️ SQLite لا يدعم JSON1 – بعض الاستعلامات قد لا تعمل.")
+        print("⚠️ SQLite does not support JSON1 – some queries may not work.")
 
     cursor = conn.cursor()
 
-    # جدول اللبنات
+    # Core units table
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS core_units (
             id TEXT PRIMARY KEY,
@@ -38,7 +38,7 @@ def create_database(db_path: Optional[str] = None) -> sqlite3.Connection:
         )
     """)
 
-    # جدول meta
+    # Meta table
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS meta (
             key TEXT PRIMARY KEY,
@@ -46,7 +46,7 @@ def create_database(db_path: Optional[str] = None) -> sqlite3.Connection:
         )
     """)
 
-    # فهارس
+    # Indexes
     cursor.execute("CREATE INDEX IF NOT EXISTS idx_stem ON core_units(stem);")
     cursor.execute("CREATE INDEX IF NOT EXISTS idx_concept ON core_units(concept);")
 
@@ -55,7 +55,7 @@ def create_database(db_path: Optional[str] = None) -> sqlite3.Connection:
 
 def update_meta(conn: sqlite3.Connection, key: str, value: str):
     """
-    يحدث أو ينشئ قيمة داخل جدول meta.
+    Updates or creates a value in the meta table.
     """
     cursor = conn.cursor()
     cursor.execute("""
@@ -66,7 +66,7 @@ def update_meta(conn: sqlite3.Connection, key: str, value: str):
 
 def initialize_meta(conn: sqlite3.Connection):
     """
-    تهيئة بيانات meta الأساسية مثل وقت الإنشاء وعدد الكلمات.
+    Initializes basic meta data such as creation time and word count.
     """
     update_meta(conn, "build_timestamp", datetime.datetime.utcnow().isoformat())
     update_meta(conn, "system_version", "1.0.0")

@@ -18,14 +18,14 @@ POS_MAP = {
 
 def build_core_unit(raw_word: str, cleaned_word: str, timestamp: Optional[str] = None) -> Optional[dict]:
     """
-    يحوّل الكلمة إلى لبنة ذكية CoreUnit تحتوي على:
-    - جذر الكلمة
-    - المفهوم الأساسي
-    - أنواع الاستخدام (POS)
-    - تعريفات موجزة
-    - كلمات مرتبطة دلاليًا
+    Converts the word into a smart CoreUnit containing:
+    - The stem of the word
+    - The main concept
+    - Part-of-speech types (POS)
+    - Brief definitions
+    - Semantically related words
 
-    يرجع None إذا لم تُستخرج معلومات كافية.
+    Returns None if insufficient information is extracted.
     """
     synsets = wn.synsets(cleaned_word)
     if not synsets:

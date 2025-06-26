@@ -15,7 +15,7 @@ def load_words(file_path):
         with open(file_path, 'r', encoding='utf-8') as f:
             return json.load(f)
     except Exception as e:
-        print(f"❌ فشل في تحميل {file_path}: {e}")
+        print(f"Failed to load {file_path}: {e}")
         return []
 
 def log_skipped(skipped):
@@ -30,7 +30,7 @@ def log_processed(units):
 def process_letter(letter, conn, global_seen, all_processed, all_skipped):
     path = os.path.join(CORE_DIR, f"{letter}.json")
     words = load_words(path)
-    print(f"\n🔤 معالجة {letter}.json — {len(words)} كلمة")
+    print(f"\nProcessing {letter}.json — {len(words)} words")
 
     for i, raw_word in enumerate(words):
         cleaned = clean_word(raw_word)
@@ -48,15 +48,15 @@ def process_letter(letter, conn, global_seen, all_processed, all_skipped):
         all_processed.append(unit)
 
         if i % 500 == 0:
-            print(f"🔁 {i}/{len(words)} | الإجمالي: {len(global_seen)} محفوظ")
+            print(f"{i}/{len(words)} | Total: {len(global_seen)} saved")
 
     conn.commit()
     update_meta(conn, f"letter_{letter}_count", str(len(all_processed)))
 
 def main():
-    parser = argparse.ArgumentParser(description="تشغيل نظام اللبنات الذكية")
-    parser.add_argument('--letter', type=str, help='حدد حرف واحد فقط لمعالجته (مثل a أو c)', default=None)
-    parser.add_argument('--db-path', type=str, help='مسار قاعدة البيانات', default="storage/core_units.db")
+    parser = argparse.ArgumentParser(description="Run Smart Lexical Core System")
+    parser.add_argument('--letter', type=str, help='Specify a single letter to process (e.g. a or c)', default=None)
+    parser.add_argument('--db-path', type=str, help='Database path', default="storage/core_units.db")
     args = parser.parse_args()
 
     conn = create_database(db_path=args.db_path)
@@ -69,16 +69,16 @@ def main():
     if args.letter:
         letter = args.letter.lower()
         if len(letter) != 1 or not letter.isalpha():
-            print("❌ يرجى إدخال حرف واحد فقط مثل: --letter c")
+            print("Please enter a single letter only, e.g.: --letter c")
             return
         process_letter(letter, conn, seen_ids, processed_units, skipped_words)
     else:
         for letter in 'abcdefghijklmnopqrstuvwxyz':
             process_letter(letter, conn, seen_ids, processed_units, skipped_words)
 
-    print(f"\n✅ تم حفظ {len(processed_units)} لبنة في القاعدة.")
+    print(f"\n{len(processed_units)} core units saved to the database.")
     if skipped_words:
-        print(f"⚠️ تم تجاهل {len(skipped_words)} كلمة – راجع {SKIPPED_LOG}")
+        print(f"{len(skipped_words)} words skipped – see {SKIPPED_LOG}")
         log_skipped(skipped_words)
 
     log_processed(processed_units)

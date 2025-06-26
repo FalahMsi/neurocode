@@ -14,9 +14,9 @@ PRIORITY_KEYWORDS = {
 
 def extract_concept(definitions: List[str], compound: bool = True) -> str:
     """
-    استخراج المفهوم (concept) من أول 3 تعريفات.
-    يعطي الأولوية لكلمات قوية الدلالة.
-    يدعم المفاهيم المركبة (compound) إذا كانت مفعّلة.
+    Extract the concept from the first 3 definitions.
+    Gives priority to strong indicative keywords.
+    Supports compound concepts if enabled.
     """
     if not definitions:
         return "unknown"
@@ -36,7 +36,7 @@ def extract_concept(definitions: List[str], compound: bool = True) -> str:
 
     return "unknown"
 
-# ✅ اختبار مباشر
+# Direct test
 if __name__ == "__main__":
     test_definitions = [
         "a small creature with wings.",

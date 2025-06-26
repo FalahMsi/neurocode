@@ -5,12 +5,12 @@ from typing import Dict
 
 def insert_unit(conn, unit: Dict[str, str | list], commit: bool = True):
     """
-    يدخل اللبنة الذكية CoreUnit إلى جدول core_units.
+    Inserts the smart unit CoreUnit into the core_units table.
     
     Parameters:
-        conn (sqlite3.Connection): اتصال بقاعدة البيانات.
-        unit (dict): تمثيل اللبنة.
-        commit (bool): هل يتم حفظ التغييرات فورًا أم لا.
+        conn (sqlite3.Connection): Database connection.
+        unit (dict): Unit representation.
+        commit (bool): Whether to commit changes immediately.
     """
     cursor = conn.cursor()
     cursor.execute("""

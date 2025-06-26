@@ -60,4 +60,4 @@ If you encounter bugs or have suggestions, open an issue [here](https://github.c
 
 By contributing, you agree that your code will be licensed under the [MIT License](LICENSE).
 
-We’re excited to build **NeuroCode** with your help. Let’s make cognitive AI for code a reality!
+We're excited to build **NeuroCode** with your help. Let's make cognitive AI for code a reality!

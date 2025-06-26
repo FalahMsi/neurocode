@@ -4,8 +4,7 @@
 
 If you discover a security vulnerability within this project, please do **not** create a public issue.
 
-Instead, kindly report it directly by email at: [falah.security@proton.me]  
-(Replace with your real contact email if different)
+Instead, kindly report it directly by email at: [info.alharbi94@gmail.com]  
 
 We will review all reports promptly and take necessary actions to resolve them.
 

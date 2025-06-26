@@ -4,21 +4,21 @@ from nltk.corpus import wordnet as wn
 from nltk.stem import WordNetLemmatizer
 from typing import Literal
 
-# POS الرمزية المعتمدة من WordNet
+# WordNet POS tags
 WordNetPOS = Literal['n', 'v', 'a', 's', 'r']
 
-# تهيئة الملمّز مرة واحدة على مستوى الملف
+# Initialize the lemmatizer once at the file level
 lemmatizer = WordNetLemmatizer()
 
 def get_dominant_wordnet_pos(word: str) -> WordNetPOS:
     """
-    استنتاج نوع الكلمة الأكثر شيوعًا (noun, verb, adjective, ...) بناءً على WordNet.
+    Infer the most common part of speech (noun, verb, adjective, ...) based on WordNet.
     
     Parameters:
-        word (str): الكلمة المدخلة
+        word (str): The input word
         
     Returns:
-        str: رمز POS الأكثر تكرارًا (n/v/a/r/s)
+        str: The most frequent POS tag (n/v/a/r/s)
     """
     if not isinstance(word, str) or not word.strip():
         return 'n'  # fallback
@@ -31,7 +31,7 @@ def get_dominant_wordnet_pos(word: str) -> WordNetPOS:
         if pos in pos_counts:
             pos_counts[pos] += 1
 
-    # الأولوية المعرفية للأنواع
+    # Priority order for POS types
     priority = ['n', 'v', 'a', 'r', 's']
     if any(pos_counts.values()):
         return sorted(priority, key=lambda x: -pos_counts[x])[0]
@@ -39,14 +39,14 @@ def get_dominant_wordnet_pos(word: str) -> WordNetPOS:
 
 def extract_stem(word: str, pos: WordNetPOS = 'n') -> str:
     """
-    استخراج جذر الكلمة باستخدام WordNet Lemmatizer بناءً على نوعها اللغوي.
+    Extract the stem of the word using WordNet Lemmatizer based on its POS.
     
     Parameters:
-        word (str): الكلمة الأصلية
-        pos (str): نوع الكلمة POS ('n', 'v', 'a', 's', 'r')
+        word (str): The original word
+        pos (str): POS tag ('n', 'v', 'a', 's', 'r')
         
     Returns:
-        str: الجذر المتوقع للكلمة
+        str: The expected stem of the word
     """
     if not isinstance(word, str):
         return word
@@ -56,7 +56,7 @@ def extract_stem(word: str, pos: WordNetPOS = 'n') -> str:
     return lemmatizer.lemmatize(word, pos=pos)
 
 
-# ✅ اختبار مباشر عند تشغيل الملف بشكل مستقل
+# Direct test when running the file independently
 if __name__ == "__main__":
     try:
         wn.synsets("test")

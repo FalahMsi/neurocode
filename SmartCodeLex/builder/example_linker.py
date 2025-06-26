@@ -1,4 +1,4 @@
-# builder/example_linker.py (نسخة مطورة نهائيًا)
+# builder/example_linker.py
 
 import json, os, argparse
 from typing import Dict, Any
@@ -25,7 +25,7 @@ def extract_metadata(example_json: Dict[str, Any], include_raw: bool = True) -> 
             total_children += 1
             node_type = node.get("type")
 
-            # تحليل الاستدعاءات
+            # Analyze calls
             if node_type == "Call":
                 for child in node.get("children", []):
                     if isinstance(child, dict) and child.get("type") in {"NameLoad", "AttributeLoad"}:
@@ -80,7 +80,7 @@ def extract_metadata(example_json: Dict[str, Any], include_raw: bool = True) -> 
         "return_type": return_type,
         "depth": max_depth,
         "child_count": total_children,
-        "complexity_score": len(calls) + len(vars_) + len(keywords) + param_count + max_depth  # محسوب بذكاء
+        "complexity_score": len(calls) + len(vars_) + len(keywords) + param_count + max_depth  # Calculated intelligently
     }
 
     if include_raw:
@@ -89,7 +89,7 @@ def extract_metadata(example_json: Dict[str, Any], include_raw: bool = True) -> 
 
 def process_examples(input_path: str, output_path: str, include_raw: bool):
     if not os.path.exists(input_path):
-        print(f"❌ الملف غير موجود: {input_path}")
+        print(f"File does not exist: {input_path}")
         return
 
     with open(input_path, 'r', encoding='utf-8') as f:
@@ -98,7 +98,7 @@ def process_examples(input_path: str, output_path: str, include_raw: bool):
     advanced_bank = {}
     skipped = []
 
-    for eid, raw_str in tqdm(raw_bank.items(), desc="🔍 تحليل الأمثلة"):
+    for eid, raw_str in tqdm(raw_bank.items(), desc="🔍 Analyzing examples"):
         try:
             parsed = json.loads(raw_str)
             advanced_bank[eid] = extract_metadata(parsed, include_raw)
@@ -115,15 +115,15 @@ def process_examples(input_path: str, output_path: str, include_raw: bool):
         with open(SKIPPED_LOG, 'w', encoding='utf-8') as log:
             for eid, err in skipped:
                 log.write(f"{eid}: {err}\n")
-        print(f"⚠️ تم تخطي {len(skipped)} مثالًا. انظر {SKIPPED_LOG}")
+        print(f"Skipped {len(skipped)} examples. See {SKIPPED_LOG}")
 
-    print(f"✅ تم حفظ {len(advanced_bank)} مثالًا محسنًا في: {output_path}")
+    print(f"Saved {len(advanced_bank)} enhanced examples to: {output_path}")
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="تحليل أمثلة AST وتحسين بياناتها")
-    parser.add_argument('--input', type=str, default=INPUT_PATH, help="مسار ملف example_bank.json")
-    parser.add_argument('--output', type=str, default=OUTPUT_PATH, help="مسار إخراج الملف المحسن")
-    parser.add_argument('--no-raw', action='store_true', help="عدم حفظ الشكل الكامل لكل مثال (raw)")
+    parser = argparse.ArgumentParser(description="Analyze AST examples and enhance their metadata")
+    parser.add_argument('--input', type=str, default=INPUT_PATH, help="Path to example_bank.json file")
+    parser.add_argument('--output', type=str, default=OUTPUT_PATH, help="Path to save enhanced file")
+    parser.add_argument('--no-raw', action='store_true', help="Do not save the full raw example")
 
     args = parser.parse_args()
     process_examples(args.input, args.output, include_raw=not args.no_raw)

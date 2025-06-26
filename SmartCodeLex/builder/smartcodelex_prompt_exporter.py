@@ -8,7 +8,7 @@ OUTPUT_PATH = "prompts/prompts.txt"
 MAX_EXAMPLES = 3
 
 # ===============================
-# استرجاع البيانات من القاعدة
+# Fetch data from the database
 # ===============================
 def fetch_units_with_examples():
     conn = sqlite3.connect(DB_PATH)
@@ -26,7 +26,7 @@ def fetch_units_with_examples():
     return core_units, examples_map
 
 # ===============================
-# توليد prompt من اللبنة
+# Generate prompt from unit
 # ===============================
 def generate_prompt(unit, examples_map):
     uid, term, concept, definition, example_ids_json = unit
@@ -49,7 +49,7 @@ def generate_prompt(unit, examples_map):
     return prompt
 
 # ===============================
-# تنفيذ التصدير
+# Execute export
 # ===============================
 def export_prompts():
     if not os.path.exists("prompts"):
@@ -61,8 +61,8 @@ def export_prompts():
             prompt = generate_prompt(unit, examples_map)
             f.write(prompt)
 
-    print(f"✅ تم توليد prompts لعدد {len(core_units)} مفهوم.")
-    print(f"📁 تم الحفظ في: {OUTPUT_PATH}")
+    print(f"✅ Prompts generated for {len(core_units)} concepts.")
+    print(f"📁 Saved to: {OUTPUT_PATH}")
 
 # ===============================
 if __name__ == "__main__":

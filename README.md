@@ -12,7 +12,7 @@
 ## 📘 About the Project
 
 NeuroCode proposes a cognitively inspired framework for understanding source code.  
-It simulates a **neural memory system** for AI by extracting lightweight “code neurons” from source code, documentation, and code usage patterns.
+It simulates a **neural memory system** for AI by extracting lightweight "code neurons" from source code, documentation, and code usage patterns.
 
 These code neurons are:
 
@@ -48,7 +48,7 @@ It includes the theoretical background, motivation, and technical architecture.
 
 This repository **excludes large data files** and intermediate artifacts to keep the repo clean.
 
-To generate your own test data or simulate training, refer to each module’s internal docstrings.
+To generate your own test data or simulate training, refer to each module's internal docstrings.
 
 ---
 
