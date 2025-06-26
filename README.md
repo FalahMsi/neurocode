@@ -11,57 +11,80 @@
 
 ## 📘 About the Project
 
-NeuroCode proposes a cognitively inspired framework for understanding source code.  
-It simulates a **neural memory system** for AI by extracting lightweight "code neurons" from source code, documentation, and code usage patterns.
+**NeuroCode** is a cognitively inspired framework for understanding source code.  
+It simulates a **neural memory system** for machines by extracting lightweight "code neurons" from source code, documentation, and usage patterns.
 
 These code neurons are:
 
 - **Activated only when relevant**
-- **Forgotten when unused**
-- **Context-weighted based on frequency and proximity**
-- **Organized to mimic human cognitive structures** (contextual recall, associative memory, long-term consolidation)
+- **Forgotten when unused** (simulating memory decay)
+- **Context-weighted** based on frequency and recency
+- **Organized** to mimic human cognitive behavior (contextual recall, associative memory, long-term consolidation)
 
 🎯 The ultimate goal:  
-To **reduce dependence on massive inference from LLMs** by emulating **selective memory recall** — just like the brain activates only specific pathways based on task or context.
+To **reduce reliance on constant full LLM inference** by emulating **selective memory recall** — the way the human brain activates specific memory pathways depending on the task.
+
+---
+
+## 🧩 Why Pluggable Knowledge Matters
+
+In many domains, it's impractical or impossible to pretrain on proprietary or evolving data (e.g., private source code, stories in progress, custom ontologies).  
+**NeuroCode** offers a new model: treating knowledge as **modular and pluggable**.
+
+- You can inject dynamic code or domain-specific memory on the fly.
+- The system decides which neurons to activate, ignore, or decay — just like adaptive cognitive memory.
+- This makes NeuroCode useful for real-time, domain-specific, or privacy-critical environments.
 
 ---
 
 ## 📄 Full Concept Document
 
-You can read the full open initiative PDF here:  
+Read the full open-initiative concept PDF here:  
 👉 [initiative.pdf](./initiative.pdf)
 
-It includes the theoretical background, motivation, and technical architecture.
+Includes theoretical foundation, design principles, and architecture.
 
 ---
 
 ## ⚙️ What's Included
 
-- Code neuron extractor & semantic pattern linker
-- Modular analyzers for building cognitive embeddings
-- Example components to simulate context-aware recall
-- Entry point script: `main.py`
+- 🧠 Code neuron extractor & semantic linker
+- 🧩 Modular analyzers for generating cognitive embeddings
+- 🔁 Context-aware recall simulation
+- 🧪 Entry point script: `main.py`
 
 ---
 
 ## 🚫 What's Not Included
 
-This repository **excludes large data files** and intermediate artifacts to keep the repo clean.
+To keep the repo minimal:
 
-To generate your own test data or simulate training, refer to each module's internal docstrings.
+- No pretrained data
+- No saved models
+- No test sets
+
+Refer to docstrings in each module to simulate your own experiments.
 
 ---
 
 ## 🚀 Quick Start
 
 ```bash
-# Assuming Python environment is ready
+# Clone and install
+git clone https://github.com/FalahMsi/neurocode.git
+cd neurocode
+
 python -m venv .venv
 .venv\Scripts\activate        # On Windows
 pip install -r requirements.txt
+
 python main.py
-Looking for Adoption
-This is an open-source intellectual initiative.
-Due to personal limitations, I am unable to continue its development.
-If you're a developer, researcher, or organization interested in adopting or expanding this idea, you're welcome.
-Feel free to fork, contribute, or reach out via GitHub or email: info.alharbi94@gmail.com
+🙋 Looking for Adoption
+
+This is a public, open-source intellectual initiative.
+Due to personal resource constraints, I cannot continue development alone.
+
+If you’re a developer, researcher, or organization interested in expanding or building upon this concept — you’re welcome to fork, adapt, or reach out.
+
+📫 Email: info.alharbi94@gmail.com
+🤝 Contributions and collaborations are highly encouraged.
