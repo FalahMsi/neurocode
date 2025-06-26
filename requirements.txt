@@ -1,0 +1,12 @@
+# Core requirements
+numpy
+scikit-learn
+nltk
+tqdm
+sqlalchemy
+openai
+python-dotenv
+
+# Optional utilities
+matplotlib
+pandas
