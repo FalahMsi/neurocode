@@ -1,0 +1,14 @@
+﻿cff-version: 1.2.0
+message: "If you use this project in your research, please cite it as below."
+title: "NeuroCode: Modular Cognitive AI for Code Understanding"
+authors:
+  - family-names: Alharbi
+    given-names: Falah
+date-released: 2025-06-26
+version: "0.1.0"
+url: "https://github.com/FalahMsi/neurocode"
+repository-code: "https://github.com/FalahMsi/neurocode"
+abstract: >
+  NeuroCode is an open intellectual initiative to simulate neural-like memory in AI code understanding.
+  It proposes modular analyzers that mimic cognitive activation, associative memory, and selective recall,
+  aiming to reduce full dependency on large language models.
