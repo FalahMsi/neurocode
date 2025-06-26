@@ -60,3 +60,8 @@ python -m venv .venv
 .venv\Scripts\activate        # On Windows
 pip install -r requirements.txt
 python main.py
+Looking for Adoption
+This is an open-source intellectual initiative.
+Due to personal limitations, I am unable to continue its development.
+If you're a developer, researcher, or organization interested in adopting or expanding this idea, you're welcome.
+Feel free to fork, contribute, or reach out via GitHub or email: info.alharbi94@gmail.com
